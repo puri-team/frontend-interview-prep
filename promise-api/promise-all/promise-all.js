@@ -28,18 +28,22 @@ function promiseAll(promises) {
 // проверяем на fullfilled
 function testTransitionToFulfilledState() {
     const url = "https://jsonplaceholder.typicode.com/";
-    const promise1 = Promise.resolve('resolve');
+    const promise1 = Promise.resolve('resolve1');
     const promise2 = new Promise(async (resolve, reject) => {
         await fetch(url + 'users');
-        resolve('succeed1');
-
+        resolve('succeed2');
     });
     const promise3 = new Promise(async (resolve, reject) => {
         await fetch(url + 'todos');
-        resolve('succeed2');
+        resolve('succeed3');
     });
-
-    const response = promiseAll([promise1, promise2, promise3]);
+    const promise4 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 500, 'succeed4');
+    });
+    const promise5 = new Promise((resolve, reject) => {
+        setTimeout(resolve, 300, 'succeed5');
+    });
+    const response = promiseAll([promise1, promise2, promise3, promise4, promise5]);
     response.then((res) => { console.log(res) }).catch((err) => { console.log(err) });
 }
 
