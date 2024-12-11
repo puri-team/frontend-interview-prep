@@ -27,15 +27,15 @@ function promiseAll(promises) {
 
 // проверяем на fullfilled
 function testTransitionToFulfilledState() {
-    const API_URL = "https://jsonplaceholder.typicode.com/users";
+    const url = "https://jsonplaceholder.typicode.com/";
     const promise1 = Promise.resolve('resolve');
     const promise2 = new Promise(async (resolve, reject) => {
-        await fetch(API_URL);
+        await fetch(url + 'users');
         resolve('succeed1');
 
     });
     const promise3 = new Promise(async (resolve, reject) => {
-        await fetch(API_URL);
+        await fetch(url + 'todos');
         resolve('succeed2');
     });
 
