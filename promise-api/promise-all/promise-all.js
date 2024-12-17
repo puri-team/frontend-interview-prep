@@ -15,10 +15,8 @@ function promiseAll(promises) {
         for (const promise of promises) {
             promise.then((response) => {
                 result.push(response);
-                console.log(response, result, promises.length);
 
                 if (result.length === promises.length) {
-                    console.log('before resolve', result);
                     resolve(result);
                 }
             }).catch((err) => {
